@@ -1,0 +1,24 @@
+name: "🐛 Bug"
+description: "버그 리포트"
+labels: ["bug"]
+title: "🐛 [Bug] "
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🔍 문제
+      description: 무슨 문제가 발생했는지 설명해 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 설명
+      description: 원래 어떤 결과가 나와야 하는지 설명해 주세요.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 📚 기타 사항
+      description: 기타 사항이 있다면 작성해 주세요.

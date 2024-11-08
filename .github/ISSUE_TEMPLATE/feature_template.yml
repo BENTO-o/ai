@@ -1,0 +1,24 @@
+name: "✨ Feature"
+description: "새로운 기능 추가"
+labels: ["enhancement"]
+title: "✨ [Feature] "
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 설명
+      description: 새로운 기능에 대한 설명을 작성해 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: todo
+    attributes:
+      label: ✔️ 작업할 내용
+      description: 작업이 필요한 내용을 추가해 주세요.
+      value: "- [ ] todo1"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 📚 기타 사항
+      description: 참고 자료나 기타 사항이 있다면 작성해 주세요.
