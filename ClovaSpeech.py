@@ -1,12 +1,17 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class ClovaSpeechClient:
     # Clova Speech invoke URL (앱 등록 시 발급받은 Invoke URL)
     invoke_url = 'https://clovaspeech-gw.ncloud.com/external/v1/9450/557708102ce267f8581b8e3855a37bb72d9246a419c6cb90a1eebe6fe97a2a33'
     # Clova Speech secret key (앱 등록 시 발급받은 Secret Key)
-    secret = 'fa6d851268854b6c84df056c72de52b4'
+    secret = os.getenv("CLOVA_SECRET_KEY")
 
+# 외부 파일 인식
     # def req_url(self, url, completion, callback=None, userdata=None, forbiddens=None, boostings=None, wordAlignment=True, fullText=True, diarization=None, sed=None):
     #     request_body = {
     #         'url': url,
@@ -29,7 +34,7 @@ class ClovaSpeechClient:
     #     return requests.post(headers=headers,
     #                          url=self.invoke_url + '/recognizer/url',
     #                          data=json.dumps(request_body).encode('UTF-8'))
-    #
+# object sotorage 파일 인식
     # def req_object_storage(self, data_key, completion, callback=None, userdata=None, forbiddens=None, boostings=None,
     #                        wordAlignment=True, fullText=True, diarization=None, sed=None):
     #     request_body = {
@@ -86,30 +91,6 @@ class ClovaSpeechClient:
         }
         response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
         return response
-
-# if __name__ == '__main__':
-#     # res = ClovaSpeechClient().req_url(url='http://example.com/media.mp3', completion='sync')
-#     # res = ClovaSpeechClient().req_object_storage(data_key='data/media.mp3', completion='sync')
-#     res = ClovaSpeechClient().req_upload(file='../data/test_1.m4a', completion='sync')
-#     # res = ClovaSpeechClient().req_upload(file='/')
-#     print(res.text)
-
-# if __name__ == '__main__':
-#     res = ClovaSpeechClient().req_upload(file='../data/test_1.m4a', completion='sync')
-#     result = res.json()
-#
-#     segments = result.get('segments', [])
-#     timeline_segments = []
-#
-#     for segment in segments:
-#         timeline_label = segment['start']
-#         text = segment['text']
-#         timeline_segments.append({'timeline': timeline_label, 'text': text})
-#
-#     for timeline_segment in timeline_segments:
-#         timeline_label = round(timeline_segment['timeline'] * 0.001, 2)
-#         text = timeline_segment['text']
-#         print(f'{timeline_label}초: {text}')
 
 if __name__ == '__main__':
     res = ClovaSpeechClient().req_upload(file='./Data/test_1.m4a', completion='sync')
