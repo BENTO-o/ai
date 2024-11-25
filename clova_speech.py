@@ -11,54 +11,6 @@ class ClovaSpeechClient:
     # Clova Speech secret key (앱 등록 시 발급받은 Secret Key)
     secret = os.getenv("CLOVA_SECRET_KEY")
 
-# 외부 파일 인식
-    # def req_url(self, url, completion, callback=None, userdata=None, forbiddens=None, boostings=None, wordAlignment=True, fullText=True, diarization=None, sed=None):
-    #     request_body = {
-    #         'url': url,
-    #         'language': 'enko',
-    #         'completion': completion,
-    #         'callback': callback,
-    #         'userdata': userdata,
-    #         'wordAlignment': wordAlignment,
-    #         'fullText': fullText,
-    #         'forbiddens': forbiddens,
-    #         'boostings': boostings,
-    #         'diarization': diarization,
-    #         'sed': sed,
-    #     }
-    #     headers = {
-    #         'Accept': 'application/json;UTF-8',
-    #         'Content-Type': 'application/json;UTF-8',
-    #         'X-CLOVASPEECH-API-KEY': self.secret
-    #     }
-    #     return requests.post(headers=headers,
-    #                          url=self.invoke_url + '/recognizer/url',
-    #                          data=json.dumps(request_body).encode('UTF-8'))
-# object sotorage 파일 인식
-    # def req_object_storage(self, data_key, completion, callback=None, userdata=None, forbiddens=None, boostings=None,
-    #                        wordAlignment=True, fullText=True, diarization=None, sed=None):
-    #     request_body = {
-    #         'dataKey': data_key,
-    #         'language': 'enko',
-    #         'completion': completion,
-    #         'callback': callback,
-    #         'userdata': userdata,
-    #         'wordAlignment': wordAlignment,
-    #         'fullText': fullText,
-    #         'forbiddens': forbiddens,
-    #         'boostings': boostings,
-    #         'diarization': diarization,
-    #         'sed': sed,
-    #     }
-    #     headers = {
-    #         'Accept': 'application/json;UTF-8',
-    #         'Content-Type': 'application/json;UTF-8',
-    #         'X-CLOVASPEECH-API-KEY': self.secret
-    #     }
-    #     return requests.post(headers=headers,
-    #                          url=self.invoke_url + '/recognizer/object-storage',
-    #                          data=json.dumps(request_body).encode('UTF-8'))
-
     def req_upload(self, file, completion, callback=None, userdata=None, forbiddens=None, boostings=None,
                    wordAlignment=True, fullText=True, diarization=None, sed=None):
 
@@ -113,3 +65,11 @@ if __name__ == '__main__':
 
         # 시, 분, 초 형식으로 출력
         print(f'{hours:02}:{minutes:02}:{seconds:02} - {text}')
+
+    # 음성 파일 총 시간 second 단위로 출력
+    if segments:
+        total_time_ms = segments[-1]['end'] # 마지막 세그먼트의 끝 시간
+        total_time_sec = int(total_time_ms * 0.001)
+        print(f"\nTotal Duration Time: {total_time_sec} second")
+    else:
+        print("No segments found. Unable to calculate total duration.")
