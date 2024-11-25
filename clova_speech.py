@@ -3,11 +3,13 @@ import json
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
+
 
 class ClovaSpeechClient:
     # Clova Speech invoke URL (앱 등록 시 발급받은 Invoke URL)
-    invoke_url = 'https://clovaspeech-gw.ncloud.com/external/v1/9450/557708102ce267f8581b8e3855a37bb72d9246a419c6cb90a1eebe6fe97a2a33'
+    invoke_url = os.getenv("CLOVA_INVOKE_URL")
     # Clova Speech secret key (앱 등록 시 발급받은 Secret Key)
     secret = os.getenv("CLOVA_SECRET_KEY")
 
@@ -43,6 +45,7 @@ class ClovaSpeechClient:
         }
         response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
         return response
+
 
 if __name__ == '__main__':
     res = ClovaSpeechClient().req_upload(file='./Data/test_1.m4a', completion='sync')
