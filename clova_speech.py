@@ -7,6 +7,7 @@ from datetime import datetime
 # 환경변수에서 clova speech key load
 load_dotenv()
 
+
 class NoteManager:
     def __init__(self):
         self.current_note_id = 0
@@ -22,7 +23,6 @@ class ClovaSpeechClient:
         self.secret = os.getenv("CLOVA_SECRET_KEY")
         if not self.secret:
             raise ValueError("CLOVA_SECRET_KEY is not set in environment variables.")
-
 
     def req_upload(self, file_path, completion, callback=None, userdata=None, forbiddens=None, boostings=None,
                    wordAlignment=True, fullText=True, diarization=None, sed=None):
@@ -64,7 +64,6 @@ class ClovaSpeechClient:
             response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
 
         return response
-
 
 
 def change_to_custom_json(segments, total_duration_ms, output_json_path):
@@ -110,7 +109,6 @@ def change_to_custom_json(segments, total_duration_ms, output_json_path):
             "timestamp": start_time
         })
 
-
     # 전체 JSON 구조 생성
     data = {
         "noteId": note_id,
@@ -146,8 +144,8 @@ if __name__ == '__main__':
     client = ClovaSpeechClient()
 
     # 테스트 오디오 파일 경로
-    file_path = 'Data/test_1.m4a'
-    output_json_path = './Data/test_1.json'
+    file_path = 'Data/example.m4a'
+    output_json_path = './Data/example.json'
 
     # Clova Speech API 호출
     response = client.req_upload(file_path=file_path, completion='sync')
