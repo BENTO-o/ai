@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-input_file = "./Data/example.json"
+input_file = "Data/example.json"
 output_file = "./Data/corrected_example.json"
 
 
