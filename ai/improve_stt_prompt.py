@@ -7,9 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# 파일 경로 설정
-input_file = "./Data/example2.json"
-output_file = "./Data/corrected_example2.json"
+input_file = "Data/example.json"
+output_file = "./Data/corrected_example.json"
 
 # 프롬프트 생성 함수
 def create_stt_improve_prompt(script):
