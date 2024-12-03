@@ -7,8 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-input_file = "./Data/STT_output/example.json"
-output_file = "./Data/improve_output/corrected_example.json"
+# 파일 경로 설정
+input_file = "Data/STT_output/example.json"
+output_file = "Data/improve_output/corrected_example.json"
 
 
 # 프롬프트 생성 함수
@@ -27,17 +28,7 @@ def create_stt_improve_prompt(script):
     )
 
 
-# json 파일 로드
-with open(input_file, "r", encoding="utf-8") as f:
-    data = json.load(f)
-
-
-# 스크립트의 텍스트 데이터만 추출
-script = data["content"]["script"]
-texts = [{"text": item["text"]} for item in script]
-
-
-# JSON 파일 로드
+# 원본 JSON 파일 로드
 with open(input_file, "r", encoding="utf-8") as f:
     data = json.load(f)
 
