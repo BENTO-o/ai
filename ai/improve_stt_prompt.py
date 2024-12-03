@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-input_file = "Data/example.json"
-output_file = "./Data/corrected_example.json"
+input_file = "./Data/STT_output/example.json"
+output_file = "./Data/improve_output/corrected_example.json"
 
 
 # 프롬프트 생성 함수
@@ -36,9 +36,6 @@ with open(input_file, "r", encoding="utf-8") as f:
 script = data["content"]["script"]
 texts = [{"text": item["text"]} for item in script]
 
-# 텍스트 출력 확인
-# for text in texts:
-#     print(text)
 
 # JSON 파일 로드
 with open(input_file, "r", encoding="utf-8") as f:
@@ -60,7 +57,7 @@ for chunk in chunks:
 
     # OpenAI API 호출
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant skilled in text correction."},
             {"role": "user", "content": create_stt_improve_prompt(texts)}
