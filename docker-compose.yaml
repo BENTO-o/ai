@@ -9,6 +9,8 @@ services:
       - bento-network
     env_file:
       - .env
+    volumes:
+      - ./data:/app/data  # 컨테이너의 /app/data를 호스트의 ./data에 마운트
 
 networks:
   bento-network:

@@ -100,37 +100,59 @@ def format_time(milliseconds):
     return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 
-@app.route('/process-audio', methods=['POST'])
+@app.route('/scripts', methods=['POST'])
 def process_audio():
-    data = request.get_json()
-    file_path = data.get('file_path')
-    completion = data.get('completion', 'sync')
+    # JSON 파일 경로 설정
+    file_dir = os.getenv("VOLUME_PATH")
+    json_file_path = file_dir + '/example.json'
 
-    if not file_path:
-        return jsonify({'error': 'file_path is required'}), 400
+    try:
+        # 파일을 열고 JSON 데이터 읽기
+        with open(json_file_path, 'r', encoding='utf-8') as json_file:
+            data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
 
-    client = ClovaSpeechClient()
-    response = client.req_upload(file_path, completion)
+        # JSON 데이터를 응답으로 반환
+        return jsonify(data)
 
-    if response.status_code != 200:
-        return jsonify({'error': 'Failed to get response from Clova API'}), 500
+    except FileNotFoundError:
+        # 파일을 찾을 수 없는 경우 오류 메시지 반환
+        return jsonify({"error": "File not found"}), 404
 
-    result = response.json()
-    segments = result.get('segments', [])
+    except json.JSONDecodeError:
+        # 파일이 잘못된 JSON 형식일 경우 오류 메시지 반환
+        return jsonify({"error": "Invalid JSON format"}), 400
 
-    if not segments:
-        return jsonify({'error': 'No segments found in the response'}), 400
-
-    total_duration_ms = segments[-1]['end']
-    custom_json = change_to_custom_json(segments, total_duration_ms)
-
-    return jsonify(custom_json)
+    #
+    # data = request.get_json()
+    # file_path = data.get('file_path')
+    # completion = data.get('completion', 'sync')
+    #
+    # if not file_path:
+    #     return jsonify({'error': 'file_path is required'}), 400
+    #
+    # client = ClovaSpeechClient()
+    # response = client.req_upload(file_path, completion)
+    #
+    # if response.status_code != 200:
+    #     return jsonify({'error': 'Failed to get response from Clova API'}), 500
+    #
+    # result = response.json()
+    # segments = result.get('segments', [])
+    #
+    # if not segments:
+    #     return jsonify({'error': 'No segments found in the response'}), 400
+    #
+    # total_duration_ms = segments[-1]['end']
+    # custom_json = change_to_custom_json(segments, total_duration_ms)
+    #
+    # return jsonify(custom_json)
 
 # 엔드포인트 정의: /get-json
 @app.route('/get-json', methods=['GET'])
 def get_json():
     # JSON 파일 경로 설정
-    json_file_path = 'Data/example.json'
+    file_dir = os.getenv("VOLUME_PATH")
+    json_file_path = file_dir + '/example.json'
 
     try:
         # 파일을 열고 JSON 데이터 읽기
