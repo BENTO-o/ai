@@ -1,0 +1,1023 @@
+{
+    "noteId": 1,
+    "title": "title",
+    "folder": "folder",
+    "createdAt": "2024-11-25 22:10:20",
+    "duration": "00:23:15",
+    "content": {
+        "script": [
+            {
+                "text": "크게 세 개로 나눴다고.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:00:01"
+            },
+            {
+                "text": "첫 번째 프로퍼티 형식",
+                "speaker": "Speaker 1",
+                "timestamp": "00:00:05"
+            },
+            {
+                "text": "프롬프트를 만들기 위해서 그 사용자 개인 정보 데이터랑",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:09"
+            },
+            {
+                "text": "그리고 JSON 파일이 필요할 거 아니야. 그 JSON 파일이랑 프롬프트 데이터를 프롬프트를 만들기 위한 개인 정보 데이터를 어떻게 관리하고 어떻게 불러올 건지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:14"
+            },
+            {
+                "text": "GPT에다가 그게 첫 번째고 두 번째는 GPT에서 이제 실제로 질문한 프롬프트 형식 그게 두 번째고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:25"
+            },
+            {
+                "text": "그리고 세 번째는 그 프롬프트가 어떤 데이터를 통해서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:35"
+            },
+            {
+                "text": "답을 줄 건지 GP가 어떤 데이터를 통해서 답을 줄 건지 그럼 답을 주는 데이터 셋들이 있을 거 아니야. 우리가 넣어야 되는",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:41"
+            },
+            {
+                "text": "IT 관련 정보에 대한 데이터 셋들 그걸 어떻게 관리할 건지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:49"
+            },
+            {
+                "text": "그리고 세 번째 첫 번째가 유저의 데이터",
+                "speaker": "Speaker 1",
+                "timestamp": "00:00:53"
+            },
+            {
+                "text": "유저 데이터",
+                "speaker": "Speaker 2",
+                "timestamp": "00:00:59"
+            },
+            {
+                "text": "그니까 유저를 유저별로 인식하기 위해 어떤 데이터를 넣을 것이냐 두 번째가 대화를 진행하기 위해",
+                "speaker": "Speaker 1",
+                "timestamp": "00:01:01"
+            },
+            {
+                "text": "JSON 파일을 어떻게 정리할 것이냐 세 번째가 데이터 답변하는 데이터의 출처를 어디로 할 것이냐",
+                "speaker": "Speaker 1",
+                "timestamp": "00:01:12"
+            },
+            {
+                "text": "그 사이에 연결 관계를 이제 생각해 봐야지. 그러면은 이게 여기에서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:01:21"
+            },
+            {
+                "text": "사용자 데이터에서 GPT로 어떻게 넘어올 거고 GPT한테 한 GPT가 답을 하기 위해서 데이터 셋에서 어떻게 들고 올 건지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:01:28"
+            },
+            {
+                "text": "그런 것들을 기대해",
+                "speaker": "Speaker 3",
+                "timestamp": "00:01:38"
+            },
+            {
+                "text": "고민해 봐야죠.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:01:42"
+            },
+            {
+                "text": "아까 보니까 신청하는 거는",
+                "speaker": "Speaker 1",
+                "timestamp": "00:01:46"
+            },
+            {
+                "text": "플러그인을 추가하고 싶으면 거기다 신청을 해야 되는데 신청을 할 때 다 만든 상태에서 신청을 해야",
+                "speaker": "Speaker 1",
+                "timestamp": "00:01:51"
+            },
+            {
+                "text": "우리가 이런 API를 가지고 있고 GPT 너네 거랑 활용을 하면은",
+                "speaker": "Speaker 1",
+                "timestamp": "00:02:01"
+            },
+            {
+                "text": "이렇게 도움이 될 것 같다라는 그러니까 기대 효과를 적어서 올려주면",
+                "speaker": "Speaker 1",
+                "timestamp": "00:02:08"
+            },
+            {
+                "text": "부 심사해서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:02:14"
+            },
+            {
+                "text": "그 API를 Full Algorithm이 되나 봐. 우리 API가 있어야",
+                "speaker": "Speaker 1",
+                "timestamp": "00:02:15"
+            },
+            {
+                "text": "우리 API가 있어요. 지금 도 달라지네.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:02:20"
+            },
+            {
+                "text": "거기서 요청하면 반환할 수 있는 답이 있어야",
+                "speaker": "Speaker 1",
+                "timestamp": "00:02:24"
+            },
+            {
+                "text": "Plugin을 어떻게 만들어야 되는가에 대한 정보를 좀 찾아보고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:02:32"
+            },
+            {
+                "text": "일단은 그게 세 번째 우리가 Falsification이 생기지 않기 위해서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:02:38"
+            },
+            {
+                "text": "데이터 셋을 어떻게 관리해야 될지 거기서 어떻게 불러올지에 대해서 고민하는 부분이라. 그 부분에서 만약 Floating이 안 된다고 한다면은",
+                "speaker": "Speaker 2",
+                "timestamp": "00:02:48"
+            },
+            {
+                "text": "다른 걸 생각해 볼 필요도 있는 것 같아. 다르게 불러올 수 있는 방법이 뭐가 있을지 데이터를",
+                "speaker": "Speaker 2",
+                "timestamp": "00:02:57"
+            },
+            {
+                "text": "그럼 그 DB는 또 어디에 저장될 것이며 그 데이터는 어떤 형식으로 저장될 것인지도 고민해 봐야지. 그 자체도",
+                "speaker": "Speaker 2",
+                "timestamp": "00:03:04"
+            },
+            {
+                "text": "GPT에서 좀 지금은 우린 GPT를 활용한다로 방향을 정했는데 GPT를 활용한 또 다른",
+                "speaker": "Speaker 1",
+                "timestamp": "00:03:13"
+            },
+            {
+                "text": "챗봇이 있을 수도 있지 않을까? 그것도 가능하지. 거기에 추가적으로 한국어를 학습시켰던 게 Clova였고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:03:22"
+            },
+            {
+                "text": "IT 관련 정보를 학습시켜 놨다라고 하는 API가 있다면",
+                "speaker": "Speaker 1",
+                "timestamp": "00:03:33"
+            },
+            {
+                "text": "그 스피트가 찾고 싶다면",
+                "speaker": "Speaker 2",
+                "timestamp": "00:03:38"
+            },
+            {
+                "text": "GP가 아니라 그 개를 써도 되지 않을까?",
+                "speaker": "Speaker 1",
+                "timestamp": "00:03:41"
+            },
+            {
+                "text": "그러면 알아 먹게.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:03:44"
+            },
+            {
+                "text": "한 달 안에 Plugin까지 만든다는 불가능해. 그 사람도 거기 강연 나온 사람도 Plugin 하나 만들어 보라.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:03:49"
+            },
+            {
+                "text": "추천을 추천했던 게 행동 하나 하는 거였잖아.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:03:59"
+            },
+            {
+                "text": "Plugin 하나 만들어 보는 걸 추천해요라고 했었잖아. 그 정도 그러니까",
+                "speaker": "Speaker 1",
+                "timestamp": "00:04:08"
+            },
+            {
+                "text": "추천하는 행동이 Plugin 만들기 그거 하나였는데 우리는 Plugin을 만들고 그걸 활용해서 결과물을 만든다니까 그건 불가능하다는",
+                "speaker": "Speaker 1",
+                "timestamp": "00:04:15"
+            },
+            {
+                "text": "20 며칠 안에 만들어서 불가능해지.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:04:24"
+            },
+            {
+                "text": "드레 측에서 원하는 시나리오는 이미 전에 사용했던 데이터를 갖고 자기네들 거에",
+                "speaker": "Speaker 2",
+                "timestamp": "00:04:27"
+            },
+            {
+                "text": "한 걸 바라지 않을까? 가장 최적의 시나리",
+                "speaker": "Speaker 4",
+                "timestamp": "00:04:34"
+            },
+            {
+                "text": "이제 이미 만들어본 경험이 있어서 소스가 다 있는 거예요. 참가자가",
+                "speaker": "Speaker 2",
+                "timestamp": "00:04:39"
+            },
+            {
+                "text": "니 근데 그걸 꼭 잘 모르겠다. 솔직히 그 정도 셋을",
+                "speaker": "Speaker 2",
+                "timestamp": "00:04:46"
+            },
+            {
+                "text": "아니야. 원하는 걔네가 원하는 건 왠지 우리가 아이디어를 머스로 냈잖아. 그거를",
+                "speaker": "Speaker 1",
+                "timestamp": "00:04:53"
+            },
+            {
+                "text": "실현할 솔루션을 있는가를 보는 거 같아요. 괜찮은 아이디어를 골랐고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:05:02"
+            },
+            {
+                "text": "실현이 가능한가를 따져서 우리가 프로토타입을 실현 가능해요 라고 가져오면 괜찮네 하는 걸로 하는",
+                "speaker": "Speaker 1",
+                "timestamp": "00:05:09"
+            },
+            {
+                "text": "이게 가능하네를 확인하는 거죠.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:05:19"
+            },
+            {
+                "text": "익스텐션 쪽까지는 잘 모르겠고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:05:22"
+            },
+            {
+                "text": "인생이 불안해요. 네 이빨이 아프면 그렇죠 심장 치료 받았던 고 또 다시",
+                "speaker": "Speaker 5",
+                "timestamp": "00:05:25"
+            },
+            {
+                "text": "고 그거는 진짜 슬픈데요. 익스텐션 쪽은 잘 모르겠어요. 너무 슬픈데 근데 어쨌든 제일 중요한 부분은",
+                "speaker": "Speaker 2",
+                "timestamp": "00:05:31"
+            },
+            {
+                "text": "그 좀 약간 유의미한 데이터 셋을",
+                "speaker": "Speaker 2",
+                "timestamp": "00:05:42"
+            },
+            {
+                "text": "어떻게 관리하냐랑 그리고 프롬프트 엔지니어링을 어떻게 하냐 그 두 개가 일단은 되게 중요하다고 봤거든. 지금 우리가 만들려고 하는 거에서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:05:52"
+            },
+            {
+                "text": "그걸 통해서 사용자 맞춤",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:01"
+            },
+            {
+                "text": "AI 비서가 나오는 거고 좀 이제 사용자 맞춤 AI 비서가",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:03"
+            },
+            {
+                "text": "유의미한 정보를 뱉으려면은 그 베이스가 되는 데이터가 신뢰성이 있어야 되고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:12"
+            },
+            {
+                "text": "중간에 그 프럼프트 엔지니어링이 사용자에게 맞춰줘야 된단 말이야. 그럼 그 두 부분을 한다면은 다른 부분들은 사실",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:18"
+            },
+            {
+                "text": "GPT가 만든 이 답들을 어떻게 재가공할 것이냐에 달려 있는 거죠. 뭐 예를 들어서 시험 문제를 만든다고 쳐 질답을 한다고 쳐.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:27"
+            },
+            {
+                "text": "그러면은 사용자에게 맞춘 프롬프트 엔지니어링을 해놨다면은 거기에서 형식만 좀 바꿔가지고 이러 이러한 형식으로 해줘라고 한다면은 그러면 그 형식으로 또 나올 수 있는",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:37"
+            },
+            {
+                "text": "또 뭐 어떤 요약국을 만든다면은 그 개념 요약본 같은 걸 만든다면은 이러이러한 형식으로 요약본을 만들어줘라고 하면은",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:49"
+            },
+            {
+                "text": "이제 맞춰진 사용자에게 맞춰진 요약본이 나오는 거지. 문제는 어떻게 사용자에게 맞출 것이냐",
+                "speaker": "Speaker 2",
+                "timestamp": "00:06:59"
+            },
+            {
+                "text": "Custom prompt engineering을 어떻게 할 것이냐 그게 중요한 거고 그러기 위한 custom prompt engineering은 했어. 근데 그게 유의미한 정도여야 되잖아.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:07:05"
+            },
+            {
+                "text": "그러려면은 데이터 셋이 좋은 거여야겠지 거짓되지 않고 가치가 있는 거여야겠지.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:07:15"
+            },
+            {
+                "text": "좀 말도 안 되는 정보를 가지고 거기서 들고 와 봤자 의미가 없잖아요. 사용자에게 맞췄다 하더라도 그 두 부분을 나는 굉장히 중요하게 생각해.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:07:22"
+            },
+            {
+                "text": "그게만 구현이 된다면은 우리가 만든 서비스가 실제로 구현될 수 있지 않을까 나머지는 UI를 어떻게 만들 건지 그걸 어떻게 사용자 친화적으로",
+                "speaker": "Speaker 2",
+                "timestamp": "00:07:30"
+            },
+            {
+                "text": "좀 접근성 좋게 만들어줄 건지의 관점의 문제라고 생각.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:07:40"
+            },
+            {
+                "text": "거기서 Auto flight dice만 돌아가고 말아버리고 하시더라고요.",
+                "speaker": "Speaker 3",
+                "timestamp": "00:07:44"
+            },
+            {
+                "text": "그래서 아까 3 가지 형식으로 나눴으니까 거기에 대해서 하나씩 좀 격파를 해 봐야 될 것 같아요. 한 개씩",
+                "speaker": "Speaker 2",
+                "timestamp": "00:08:06"
+            },
+            {
+                "text": "벽화를 좀 해 나갈 필요가 있고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:08:15"
+            },
+            {
+                "text": "뭐라고 해야지 옛날 그 테스트 같은 거는 뭐무입니까? 예스 노로 나눠가지고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:08:37"
+            },
+            {
+                "text": "결론이 뭐 몇 번으로 가세요 몇 번으로 가세요 이런 거 있잖아. 그런 것처럼 사용자를 한 1번에서 100번으로 나눠가지고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:08:42"
+            },
+            {
+                "text": "해당 사용자의 정보를 토대로 얘는 뭐 98번",
+                "speaker": "Speaker 1",
+                "timestamp": "00:08:54"
+            },
+            {
+                "text": "오차에 해당하는 사용자다라고 JSON에 입력을 해가지고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:09:03"
+            },
+            {
+                "text": "93번이 질문합니다. 이렇게 해서 질문을 적어서 뱉게 해도 괜찮지 않을까?",
+                "speaker": "Speaker 1",
+                "timestamp": "00:09:11"
+            },
+            {
+                "text": "질문을 적었을 게요. 그것도 괜찮아요.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:09:18"
+            },
+            {
+                "text": "이 조건에 너무 많은 데이터를 넣는 것보다 수치로 해가지고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:09:20"
+            },
+            {
+                "text": "그냥 수치가 93번 이라는 건 요로 요거 요거 요거 조건 이라는 거야 라는",
+                "speaker": "Speaker 1",
+                "timestamp": "00:09:29"
+            },
+            {
+                "text": "그러면은 그 100가지의 조건을 우리가 생성하긴 해야겠네. 1부터 100까지는 각각 조금씩 다르긴 해야 될 거잖아.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:09:37"
+            },
+            {
+                "text": "여기 하면",
+                "speaker": "Speaker 4",
+                "timestamp": "00:09:44"
+            },
+            {
+                "text": "hashing 해가지고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:09:47"
+            },
+            {
+                "text": "결과가 진짜.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:09:50"
+            },
+            {
+                "text": "일단 내가 어제 얘기했던 거는 그 지표 기반으로 나누는 거였는데",
+                "speaker": "Speaker 2",
+                "timestamp": "00:09:52"
+            },
+            {
+                "text": "그 조합을 만들어서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:00"
+            },
+            {
+                "text": "지표를 한글로 넣어놓지 말고 수치로",
+                "speaker": "Speaker 1",
+                "timestamp": "00:10:02"
+            },
+            {
+                "text": "그러니까 뭐 예를 들어서 지표라는 게 약간 이런 느낌인 거지. 밝은 어두운 그러니까 예를 들자면은 약간",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:05"
+            },
+            {
+                "text": "좀 이해가 빠르다 느리다 아니면 개념이 부족한 개념을 잘 알고 있는 이런 식의 이제",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:15"
+            },
+            {
+                "text": "여러 한 10 가지의 지표들이 있어. 거기에 맞는 프럼프트에 맞는 10가지 지표들이 있어. 어디에 넣어도 맞는 그러면은",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:24"
+            },
+            {
+                "text": "프럼프트를 네모하고 네모하고 네모 한 약간 이런 식으로",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:33"
+            },
+            {
+                "text": "일단은 그 틀만 만들어 놓으면은 여기에서 사용자 정보를 바탕으로 이 지표를 하나씩 이제 넣는 거지. 그러면 이게 조합이 120개가 나오거든.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:41"
+            },
+            {
+                "text": "이렇게 만들 수 있는 그 문장의 조합이. 그러면은 그걸 기반으로 이제 사용자에게 어떤 리스폰스를 대답을 해야 될지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:10:51"
+            },
+            {
+                "text": "배열 한 배열을 한 120개 받을 수 있어. 4개 정도 해서 1 3 4 5에 해당하는 사용",
+                "speaker": "Speaker 1",
+                "timestamp": "00:11:01"
+            },
+            {
+                "text": "어 맞아. 약간 그런 식으로. 그래서 이거를 하면은 120개 정도의 이제 분류를 할 수 있단 말이야.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:09"
+            },
+            {
+                "text": "따로 그거를 이제 설정을 안 해줘. 그럼 이거를 이제 리스폰스로 던져주는 거지.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:17"
+            },
+            {
+                "text": "사용자의 지금 상태이고 네가 대답을 할",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:23"
+            },
+            {
+                "text": "어떤 대답을 해서 고려해야 될 부분이라고 던져주고 거기에서 플러스해서 이게 프럼프트라는 게 결론적으로 어쨌든 구체적이면 구체적일수록 좋단 말이야",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:28"
+            },
+            {
+                "text": "이게. 그래야 더 유의미한 답이 나오게 되고 그래서 여기에서 플러스 좀 더 구체성을 뛸 수 있는",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:38"
+            },
+            {
+                "text": "프럼프트를 넣어줄 수 있다면 좋지 않을까 를 이제 생각하게 되는 거죠. 그러면은 중요한 거는 이 10가지 지표가 존재한다고 하면은",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:47"
+            },
+            {
+                "text": "이 지표를 뭘 기반으로 선택할 거냐 어떤 걸 기반으로 이 지표를 선택할 건데 그러면은 사용자의 정보가 중요해지겠지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:11:57"
+            },
+            {
+                "text": "사용자의 정보가 예를 들어서 되게 단편적인 정보들로만",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:06"
+            },
+            {
+                "text": "단편적인 정보들을 기반으로 해서 이 지표들을 뽑아내게 되면은 되게 쉽게 쉽게 뽑아낼 수 있으니까 조금",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:13"
+            },
+            {
+                "text": "만약에 좀 더 개인에게 개인화 시키고 싶고 맞추고 싶으면은 좀 더 다양한 정보로 뽑아낼 필요는 있는 거지. 다양한 정보를 기반으로 해서",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:21"
+            },
+            {
+                "text": "그럼 이 지표는 어떤 지표를 줄 것인가 그것도 고민해 봐야 될 문제고 어떤 지표를 주고 어떤 개인 정보를 바탕으로 어떤 지표를",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:32"
+            },
+            {
+                "text": "뽑아서 어떻게 프로프트를 만들 것인가 이게 1번이랑 2번이야. 맨 앞에 내가 얘기하지 1번이랑 2번까지가 이게 이거고 그럼 이것까지 했어.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:40"
+            },
+            {
+                "text": "그러면 3번은 플러그인이나 이런 걸 통해서 GPT가 이제 유의미한 결과를 만들어낼 수 있도록",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:50"
+            },
+            {
+                "text": "만들어주는 거죠.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:12:59"
+            },
+            {
+                "text": "플로그인 없으면 어떻게",
+                "speaker": "Speaker 1",
+                "timestamp": "00:13:00"
+            },
+            {
+                "text": "플러그인 없으면 방법을 찾아야지. 데이터 에서 어떻게 들고 올지 유의미한 데이터를 어쨌든 우리 같이 PT에게 시킬 건 내가 생각했을 때 요약이거든.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:01"
+            },
+            {
+                "text": "거기서도 얘기했던 게 오차를 최대한 줄이기 위해서는 유의미한 데이터에서 데이터",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:10"
+            },
+            {
+                "text": "내용을 들고 와서 GPT에게 요약을 시키는 게 가장 좋은 방법인 것 같다고 그쪽에서도 얘기를 했고 GPT가 그런 거는 또 되게 잘해준단 말이야.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:17"
+            },
+            {
+                "text": "잘 요약해줘.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:27"
+            },
+            {
+                "text": "오차를 어떻게 줄이나요라고 했더니 질문을 제대로 하세요라고 답했",
+                "speaker": "Speaker 1",
+                "timestamp": "00:13:28"
+            },
+            {
+                "text": "그 질문 제대로 하는 방법이 무엇이냐 역할 부여하고 자세하게 물어보고 뭐 이런 거니까",
+                "speaker": "Speaker 4",
+                "timestamp": "00:13:33"
+            },
+            {
+                "text": "요약시켜라 뭐 그렇게 얘기를 했었거든. 그건",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:39"
+            },
+            {
+                "text": "우리가 테스트를 계속 해보면서 바꿔보는 방법도",
+                "speaker": "Speaker 4",
+                "timestamp": "00:13:41"
+            },
+            {
+                "text": "그리고 솔직히 아예 존재하지 않을 거라고 생각하진 않아. 그러니까 그걸 해도 GPT는 우리보다 더 많은 지식들이 있어. 아예 아니 그게 아니라",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:45"
+            },
+            {
+                "text": "우리가 아무리 거기서 들고 온다고 하더라도 그 오차가 아예 없을 거라고 생각이 들진 않아요.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:13:55"
+            },
+            {
+                "text": "그러니까 어떤 방식으로든 생기긴 하겠지. 근데 그게 생길 만한 가능성을 최대한 줄이는 게 맞지 않냐는 생각이 들긴 해요. 우리가 푸른",
+                "speaker": "Speaker 2",
+                "timestamp": "00:14:00"
+            },
+            {
+                "text": "예외 처리나 버그라고 생각을 하고 있어요.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:14:10"
+            },
+            {
+                "text": "조금 줄이는 방향으로 그걸 최대한 제로에 가까운 방향으로 만드는",
+                "speaker": "Speaker 2",
+                "timestamp": "00:14:12"
+            },
+            {
+                "text": "일단 1 역할 부여를 하고 일단 JSON 파일 던져주면서 이저에",
+                "speaker": "Speaker 4",
+                "timestamp": "00:14:17"
+            },
+            {
+                "text": "로 어떻게 해요",
+                "speaker": "Speaker 2",
+                "timestamp": "00:14:26"
+            },
+            {
+                "text": "출력을 해도 이제 이게 우리 테스트 안에서 이제 매번 오차가 되는 거지 이 질문들이 근데 문제는",
+                "speaker": "Speaker 4",
+                "timestamp": "00:14:27"
+            },
+            {
+                "text": "이 사람이 과거에 어떤 걸 했는지를 매번 이사람이 로그인할 때마다 갖고 올 건지 파싱해 올 건지 아니면은",
+                "speaker": "Speaker 4",
+                "timestamp": "00:14:36"
+            },
+            {
+                "text": "이 사람에 대한 유저 데이터를 따로 어딘가에 저장을 할 건지 이거는 선택을 해야 돼요. 데이터는 저장을 해놔야지 생각을 해보면 저장을 안 해도 될 것 같은",
+                "speaker": "Speaker 4",
+                "timestamp": "00:14:44"
+            },
+            {
+                "text": "어차피 이 사람이 처음 로그인을 했던 두 번째 로그인한 세 번째 로그인을 했던 그런 페이지를 로그인하게 되면은 파싱할 수 있는 그게 있는 거잖아요.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:14:55"
+            },
+            {
+                "text": "사실 어떻게 하냐에 따라서 달라지겠지만 그래서 오늘 든 생각은 굳이 따로 데이터베이스가 없어도 될 것 같은",
+                "speaker": "Speaker 4",
+                "timestamp": "00:15:02"
+            },
+            {
+                "text": "유저의 정보를 저장할 만한 데이터베이스가 존재하지 않아도 된다.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:15:13"
+            },
+            {
+                "text": "뭐 데이터 베이스라고 하기 좀 그렇긴 하지만",
+                "speaker": "Speaker 4",
+                "timestamp": "00:15:18"
+            },
+            {
+                "text": "근데 이전 대화 기록은 존재할 가치가 있지 않아. 이 대화 그걸 위해서 JSON 파일을 저장할 만한 뭔가는 있어야 되지 않아",
+                "speaker": "Speaker 2",
+                "timestamp": "00:15:21"
+            },
+            {
+                "text": "그러니까 예를 들어서 그 사람이 로그아웃하고 다시 로그인을 하게 된다면은 그걸 저장 안 해 놓으면은 그 JSON 파일도 사라지고 이전 대화 내용도 다 없어지는 거잖아. 이전 대화 내용만 사라지고 그걸 위해서 살려다",
+                "speaker": "Speaker 2",
+                "timestamp": "00:15:31"
+            },
+            {
+                "text": "그건 좋은 거 같아요. 그거는 그거는 그러니까 그 정도는 JSON 파일에다가 어쨌든 개인 정보나 이런 것들을",
+                "speaker": "Speaker 2",
+                "timestamp": "00:15:41"
+            },
+            {
+                "text": "저장해 놓으면 되겠다. 그래서 내가 생각한 게 대화가 끝나는 걸 뭘 기준으로 할지는 모르겠는데 대화가 끝난",
+                "speaker": "Speaker 2",
+                "timestamp": "00:15:51"
+            },
+            {
+                "text": "근데 저장하는 거는 하나 만들어 달라고 할까? 우리의 영역이 아니야. 크롬 익스텐션 안",
+                "speaker": "Speaker 1",
+                "timestamp": "00:15:58"
+            },
+            {
+                "text": "그래? 해줄 수 있어",
+                "speaker": "Speaker 2",
+                "timestamp": "00:16:03"
+            },
+            {
+                "text": "우리가 아이디어를 내고 이제 우리가 얘기해야지. 우리가 필요한",
+                "speaker": "Speaker 4",
+                "timestamp": "00:16:06"
+            },
+            {
+                "text": "그러면은 그러면 고민 안 해도 되지.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:16:08"
+            },
+            {
+                "text": "아니. 우리는",
+                "speaker": "Speaker 1",
+                "timestamp": "00:16:11"
+            },
+            {
+                "text": "저장 대화 저장 형 그러니까 뭐라 그래? 저장하고 띄우는 건 거의 극속이고 우리는",
+                "speaker": "Speaker 1",
+                "timestamp": "00:16:14"
+            },
+            {
+                "text": "질문하고 뵙고 함수 만드는 게 다지. 우리는.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:16:22"
+            },
+            {
+                "text": "근데 그 과거의 데이터를 우리가 필요로 하게 되면은 우리 것도 이제 구현이 바뀔 거고 필요가 없으면 또 구현이 바뀔 거니까 그거는 그쪽이랑 우리",
+                "speaker": "Speaker 4",
+                "timestamp": "00:16:28"
+            },
+            {
+                "text": "우리가 base 형태로 만들어 놓으면 저장은",
+                "speaker": "Speaker 1",
+                "timestamp": "00:16:37"
+            },
+            {
+                "text": "그쪽에서 알아서 한다. 그러니까 그러면 할 건지 안 할 건지는 결정을 해야 되는 거잖아요.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:16:40"
+            },
+            {
+                "text": "장은 해야겠죠",
+                "speaker": "Speaker 1",
+                "timestamp": "00:16:44"
+            },
+            {
+                "text": "그럼 DV 관리도 그쪽에서 알아서 하는 거야",
+                "speaker": "Speaker 2",
+                "timestamp": "00:16:45"
+            },
+            {
+                "text": "아마 DB는 Firebase를 쓰지 않을까?",
+                "speaker": "Speaker 1",
+                "timestamp": "00:16:48"
+            },
+            {
+                "text": "우리가 뭐 그거는 고려할 필요가 없는 거네. 그러면 크게",
+                "speaker": "Speaker 2",
+                "timestamp": "00:16:54"
+            },
+            {
+                "text": "어디에 저장하고 어디에 어떻게 관리가 되고 이건 저장할 필요가 없는 거네. 일단 데이터 베이스는 들고 올 수 있다고 가정을 하고 우리는 만들면 되는 거고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:16:58"
+            },
+            {
+                "text": "호출을 어떻게 할지를 생각하면 되는 거야. 그러면",
+                "speaker": "Speaker 2",
+                "timestamp": "00:17:08"
+            },
+            {
+                "text": "거기 함수에다가 그 JSON을 어떻게 저장할 거냐는 생각을 정도 해봐야겠어요.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:17:11"
+            },
+            {
+                "text": "우리가 거기에다 어떻게 저장할 건지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:17:19"
+            },
+            {
+                "text": "어떤 JSON을 그냥",
+                "speaker": "Speaker 1",
+                "timestamp": "00:17:21"
+            },
+            {
+                "text": "클릭하고 저장할 수가 없잖아요. 유저 해당 유저 정보 해당 유저 배열을 만들고 거기 안에다가",
+                "speaker": "Speaker 1",
+                "timestamp": "00:17:26"
+            },
+            {
+                "text": "고유한 값이 있어야겠지. 해당 유저에 내가 궁금한 거는",
+                "speaker": "Speaker 2",
+                "timestamp": "00:17:33"
+            },
+            {
+                "text": "저장을 거기서 처리해 주는지 아니면 우리가 직접 거기에 저장할 수 있는 그 솔루션을 만들어야 되는지 그게 궁금한 거야.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:17:39"
+            },
+            {
+                "text": "우리는 그 JSON 파일이라는 걸 만들면 걔네가 알아서 들고 가서 저장해 주는 건지 그러면 우리는 진짜 거기 안에서 프로파일링을 어떻게 할지만 고민하면 되는 거고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:17:46"
+            },
+            {
+                "text": "그걸 생각할 필요가 없으면은",
+                "speaker": "Speaker 2",
+                "timestamp": "00:17:56"
+            },
+            {
+                "text": "파일을 만드는 과정부터 시작 아니에요",
+                "speaker": "Speaker 4",
+                "timestamp": "00:17:58"
+            },
+            {
+                "text": "파일을 만드는. 그러니까 여기서 파일을 만들어도 여기다 저장하는 건 다른 거 아니야",
+                "speaker": "Speaker 2",
+                "timestamp": "00:18:00"
+            },
+            {
+                "text": "어디다 저장할 건지는 그냥 그건 그쪽 문제는 아니냐고 그러든",
+                "speaker": "Speaker 4",
+                "timestamp": "00:18:07"
+            },
+            {
+                "text": "그래서 우리는 그 JSON 파일을 이제 그 형식만 만들어주면 거기서 그냥 알아서 가져와 가지고 저장하고 이렇게 할 수 있는 건지 나도 잘 모르니까 그거를 어떻게 해 주는지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:18:11"
+            },
+            {
+                "text": "우리도. 근데 아예 생각을 안 할 필요는 없다 이거지.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:18:20"
+            },
+            {
+                "text": "나도 database를 건드려야 된다고 생각을",
+                "speaker": "Speaker 2",
+                "timestamp": "00:18:23"
+            },
+            {
+                "text": "해서 구현은 안 해도 된다. 구현은 그쪽에서 할 거다.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:18:25"
+            },
+            {
+                "text": "그렇지 그럼 어떤 database를 쓰는지 알아야겠네. 그쪽에서. 그니까 이 쓰라 해. 어떤 것?",
+                "speaker": "Speaker 2",
+                "timestamp": "00:18:29"
+            },
+            {
+                "text": "Firebase라고 있어요.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:18:39"
+            },
+            {
+                "text": "어차피",
+                "speaker": "Speaker 4",
+                "timestamp": "00:18:42"
+            },
+            {
+                "text": "서 함수 호출하면 저장해주고 호출 불러와주고 할 수 있거든요.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:18:44"
+            },
+            {
+                "text": "진짜 그리고 우리가 지금 이제 클로그림 구제 안 만들어 대는 게 어제 업데이트 된 게 그거였어.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:18:48"
+            },
+            {
+                "text": "어디서 데이트 했는데",
+                "speaker": "Speaker 2",
+                "timestamp": "00:18:55"
+            },
+            {
+                "text": "open API에서 이 GPU 업데이트 된 게 새 GPT에서도 하면서 호출을 할 수가 있다.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:18:57"
+            },
+            {
+                "text": "진짜 근데 그건 알아봐야 돼요. 자세히 안 알아봐. 업데이트 된 목록만 받고 비용 좀 절감되고 그래서 물어볼 때도 영어로 무조건 해야 될 것 같고",
+                "speaker": "Speaker 4",
+                "timestamp": "00:19:03"
+            },
+            {
+                "text": "API 써가지고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:19:11"
+            },
+            {
+                "text": "GPU에서 채 GPT는 API를 쓰는 게 아니잖아. GPT를 API로 쓰는 거지.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:19:12"
+            },
+            {
+                "text": "그러면 어디서 그냥 내가 채팅하면서 함수 출 할 수 있는 거야? 그건 아니잖아.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:19:21"
+            },
+            {
+                "text": "그걸 방법은 이제 나와 있을 걸 그게 가능하다고요 진짜 그러면 그 함수를 미리 던져줘야 되나?",
+                "speaker": "Speaker 4",
+                "timestamp": "00:19:26"
+            },
+            {
+                "text": "미쳤는데 그러면",
+                "speaker": "Speaker 2",
+                "timestamp": "00:19:35"
+            },
+            {
+                "text": "그러니까 토큰 단위로 넣어준다는 게 그러니까 어떤 식으로 API를 호출할 때 어떤 식으로 넣어주는지가 우리가 알아야",
+                "speaker": "Speaker 1",
+                "timestamp": "00:19:36"
+            },
+            {
+                "text": "좀 그 이상 이후의 걸 생각해 볼 수 있을 것 같아요. 어떻게 던지는가를 우리가 모르잖아. 지금",
+                "speaker": "Speaker 1",
+                "timestamp": "00:19:45"
+            },
+            {
+                "text": "아예 모르지. 일단은 틀은 시작은 이렇게 해야지.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:19:52"
+            },
+            {
+                "text": "gt 가입부터 하고",
+                "speaker": "Speaker 1",
+                "timestamp": "00:19:56"
+            },
+            {
+                "text": "위가 올라가 역할 부여부터 하고",
+                "speaker": "Speaker 4",
+                "timestamp": "00:19:58"
+            },
+            {
+                "text": "가입부터 하자. 너는 아까 내가 그 3 개로 나눴거든 크게 대충 설명해 주면 얘기했나? 근데",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:01"
+            },
+            {
+                "text": "어제 얘기했던 거 아니야 아까 얘기 들어보니까 어제 얘기했던 거 그대로예요. 어제 얘기했던 거 그거 말고 다른 거 우리가 해야 되는 게 과정이",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:11"
+            },
+            {
+                "text": "비슷하게 얘기했다. 트럼프 통성을 위해가지고 개인 정보 관리하고",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:21"
+            },
+            {
+                "text": "그리고 JSON 파일 관리하는 조금 있어야 될 거고 시작에는 중간에 프로프트 형식 생성하는 거 있어야 되고 뒤에는 이제 우리가",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:25"
+            },
+            {
+                "text": "유의미한 데이터를 들고 결과로 출력해야 되잖아. 네 그러면은 유의미한 데이터를 들고 올 수 있을 만한 데이터 셋이 필요하고 데이터 셋을 그럼 어떻게 관리할 건지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:34"
+            },
+            {
+                "text": "그래서 이 세 부분으로 나눠서 이제 진행하면 될 것 같거든요. 우리 쪽은 나눠서 세 부분으로 나눠서 앞에서 이제 개인 정보랑",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:43"
+            },
+            {
+                "text": "JSON 파일을 통해서 어떻게 프럼프트를 만들 건지 그 프럼프트 형식은 또 어떻게 할 건지",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:51"
+            },
+            {
+                "text": "그리고 뒤쪽에 이제 우리 데이터베이스 데이터 셋을 이제 어떻게 관리하고 거기서 또 어떻게 들고 올 건지 결과를 만드는",
+                "speaker": "Speaker 2",
+                "timestamp": "00:20:56"
+            },
+            {
+                "text": "근데 다행히 우리가 하는 게 구연이라기보다 바트 엔지니어링이잖아.",
+                "speaker": "Speaker 4",
+                "timestamp": "00:21:04"
+            },
+            {
+                "text": "생각보다 라이도가 낮아졌어. 너도 좀 찾아. 어 포트 엔지니어를 어떤 거 같아?",
+                "speaker": "Speaker 2",
+                "timestamp": "00:21:11"
+            },
+            {
+                "text": "남이 만들어 놓은 거 조금",
+                "speaker": "Speaker 1",
+                "timestamp": "00:21:18"
+            },
+            {
+                "text": "보니까 어려운 거지. 익숙해지면 금방 할 거 같아요. 우리 이거 하다가 만약에 우리가 먼저 끝나면 저쪽 도와주러 가야",
+                "speaker": "Speaker 4",
+                "timestamp": "00:21:21"
+            },
+            {
+                "text": "이게 나요 이게 아니죠 이게",
+                "speaker": "Speaker 4",
+                "timestamp": "00:21:47"
+            },
+            {
+                "text": "얼마나 어떻게 구체적으로 만들어 낼 건지를 각자 보면 이 친 다",
+                "speaker": "Speaker 2",
+                "timestamp": "00:22:38"
+            },
+            {
+                "text": "오차 나 물 좀 버렸네.",
+                "speaker": "Speaker 2",
+                "timestamp": "00:22:53"
+            },
+            {
+                "text": "본능이죠",
+                "speaker": "Speaker 4",
+                "timestamp": "00:22:57"
+            },
+            {
+                "text": "1간 뒤에 버린다. 집 가기 전에 버린",
+                "speaker": "Speaker 2",
+                "timestamp": "00:22:59"
+            },
+            {
+                "text": "혹시 저희 휴대폰을 보셨나요?",
+                "speaker": "Speaker 1",
+                "timestamp": "00:23:09"
+            },
+            {
+                "text": "여기요 당신 물통이",
+                "speaker": "Speaker 4",
+                "timestamp": "00:23:11"
+            },
+            {
+                "text": "감사합니다.",
+                "speaker": "Speaker 1",
+                "timestamp": "00:23:14"
+            }
+        ],
+        "speaker": [
+            "Speaker 1",
+            "Speaker 2",
+            "Speaker 3",
+            "Speaker 4",
+            "Speaker 5"
+        ]
+    }
+}

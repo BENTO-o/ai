@@ -130,7 +130,7 @@ def process_audio():
 @app.route('/get-json', methods=['GET'])
 def get_json():
     # JSON 파일 경로 설정
-    json_file_path = 'Data/example.json'
+    json_file_path = './Data/STT_output/example.json'
 
     try:
         # 파일을 열고 JSON 데이터 읽기
