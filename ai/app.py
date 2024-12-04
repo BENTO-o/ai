@@ -27,23 +27,25 @@ class ClovaSpeechClient:
         if not self.secret:
             raise ValueError("CLOVA_SECRET_KEY is not set in environment variables.")
 
-    def req_upload(self, file_path, completion):
+    def req_upload(self, file, language, completion):
         headers = {
             'Accept': 'application/json;UTF-8',
             'X-CLOVASPEECH-API-KEY': self.secret
         }
 
         request_body = {
-            'language': 'enko',
+            'language': language,
             'completion': completion
         }
 
-        with open(file_path, 'rb') as file:
-            files = {
-                'media': file,
-                'params': (None, json.dumps(request_body, ensure_ascii=False).encode('UTF-8'), 'application/json')
-            }
-            response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
+        files = {
+            'media': file,
+            'params': (None, json.dumps(request_body, ensure_ascii=False).encode('UTF-8'), 'application/json')
+        }
+
+        print("Waiting response from Clova...")
+
+        response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
 
         return response
 
@@ -100,38 +102,32 @@ def format_time(milliseconds):
     return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 
+# get STT results
 @app.route('/scripts', methods=['POST'])
 def process_audio():
-    # JSON 파일 경로 설정
-    file_dir = os.getenv("VOLUME_PATH")
-    json_file_path = file_dir + '/example.json'
+    # get files
+    file = request.files['file']
+    language = request.form['language']
+    topics = request.form['topics']
 
-    try:
-        # 파일을 열고 JSON 데이터 읽기
-        with open(json_file_path, 'r', encoding='utf-8') as json_file:
-            data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
+    if not file:
+        return jsonify({'error': 'file is wrong'}), 400
 
-        # JSON 데이터를 응답으로 반환
-        return jsonify(data)
+    print("Get files from client")
 
-    except FileNotFoundError:
-        # 파일을 찾을 수 없는 경우 오류 메시지 반환
-        return jsonify({"error": "File not found"}), 404
+    # (for test) return dummy data
+    json_file_path = './Data/test_1.json'
 
-    except json.JSONDecodeError:
-        # 파일이 잘못된 JSON 형식일 경우 오류 메시지 반환
-        return jsonify({"error": "Invalid JSON format"}), 400
+    # 파일을 열고 JSON 데이터 읽기
+    with open(json_file_path, 'r', encoding='utf-8') as json_file:
+        data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
 
-    #
-    # data = request.get_json()
-    # file_path = data.get('file_path')
-    # completion = data.get('completion', 'sync')
-    #
-    # if not file_path:
-    #     return jsonify({'error': 'file_path is required'}), 400
-    #
+    # JSON 데이터를 응답으로 반환
+    return jsonify(data)
+
+    # # send file to Clova and get response
     # client = ClovaSpeechClient()
-    # response = client.req_upload(file_path, completion)
+    # response = client.req_upload(file, language, completion='sync')
     #
     # if response.status_code != 200:
     #     return jsonify({'error': 'Failed to get response from Clova API'}), 500
@@ -147,7 +143,7 @@ def process_audio():
     #
     # return jsonify(custom_json)
 
-# 엔드포인트 정의: /get-json
+# get dummy STT response
 @app.route('/get-json', methods=['GET'])
 def get_json():
     # JSON 파일 경로 설정
