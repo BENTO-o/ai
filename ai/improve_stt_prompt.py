@@ -28,14 +28,14 @@ def create_stt_improve_prompt(script):
     )
 
 
-# 원본 JSON 파일 로드
+# JSON 파일 로드
 with open(input_file, "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # 스크립트 데이터 추출
 script = data["content"]["script"]
 
-# 스크립트 분할 
+# 스크립트 분할
 chunk_size = 20
 chunks = [script[i:i + chunk_size] for i in range(0, len(script), chunk_size)]
 
@@ -55,8 +55,16 @@ for chunk in chunks:
         ]
     )
 
-    # 변환된 텍스트 JSON 문자열을 파싱
-    corrected_chunk = json.loads(response.choices[0].message.content)
+    # 응답 본문 확인
+    content = response.choices[0].message.content
+    print("Raw OpenAI Response Content:", content)
+
+    # 불필요한 백틱(```json ... ```) 제거
+    if content.startswith("```json"):
+        content = content.strip("```json").strip("```").strip()
+
+    # JSON 변환 시도
+    corrected_chunk = json.loads(content)
     corrected_scripts.extend(corrected_chunk)
 
 # 원본 JSON의 script 내용 교체
@@ -68,3 +76,4 @@ with open(output_file, "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
 
 print(f"Updated JSON saved to {output_file}")
+
