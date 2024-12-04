@@ -8,8 +8,9 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # 파일 경로 설정
-input_file = "./Data/example2.json"
-output_file = "./Data/corrected_example2.json"
+input_file = "Data/STT_output/example.json"
+output_file = "Data/improve_output/corrected_example.json"
+
 
 # 프롬프트 생성 함수
 def create_stt_improve_prompt(script):
@@ -26,6 +27,7 @@ def create_stt_improve_prompt(script):
         f"\n\n{json.dumps(script, ensure_ascii=False)}"
     )
 
+
 # 원본 JSON 파일 로드
 with open(input_file, "r", encoding="utf-8") as f:
     data = json.load(f)
@@ -33,7 +35,7 @@ with open(input_file, "r", encoding="utf-8") as f:
 # 스크립트 데이터 추출
 script = data["content"]["script"]
 
-# 스크립트 분할 (한 번에 너무 많은 텍스트를 보낼 수 없으므로 분할)
+# 스크립트 분할 
 chunk_size = 20
 chunks = [script[i:i + chunk_size] for i in range(0, len(script), chunk_size)]
 
@@ -46,7 +48,7 @@ for chunk in chunks:
 
     # OpenAI API 호출
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a helpful assistant skilled in text correction."},
             {"role": "user", "content": create_stt_improve_prompt(texts)}
