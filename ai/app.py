@@ -101,10 +101,19 @@ def format_time(milliseconds):
     minutes, seconds = divmod(remainder, 60)
     return f"{hours:02}:{minutes:02}:{seconds:02}"
 
+def save_file(input_content, output_file):
+    with open(output_file, mode='w', encoding='utf-8') as json_file:
+        json.dump(input_content, json_file, ensure_ascii=False, indent=4)
+
+
 
 # get STT results
 @app.route('/scripts', methods=['POST'])
 def process_audio():
+    # JSON 파일 경로 설정
+    file_dir = os.getenv("VOLUME_PATH")
+    output_file = file_dir + '/STT_output/example.json'
+
     # get files
     file = request.files['file']
     language = request.form['language']
@@ -115,12 +124,15 @@ def process_audio():
 
     print("Get files from client")
 
+
     # (for test) return dummy data
-    json_file_path = './Data/test_1.json'
+    dummy_file = file_dir + '/STT_output/example.json'
 
     # 파일을 열고 JSON 데이터 읽기
-    with open(json_file_path, 'r', encoding='utf-8') as json_file:
+    with open(dummy_file, 'r', encoding='utf-8') as json_file:
         data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
+
+    # save_file(data, file_dir + '/STT_output/test_1.json')
 
     # JSON 데이터를 응답으로 반환
     return jsonify(data)
@@ -141,30 +153,11 @@ def process_audio():
     # total_duration_ms = segments[-1]['end']
     # custom_json = change_to_custom_json(segments, total_duration_ms)
     #
+    # save_file(custom_json, output_file)
+    #
+    # print(f"Custom JSON file saved at: {output_file}")
+    #
     # return jsonify(custom_json)
-
-# get dummy STT response
-@app.route('/get-json', methods=['GET'])
-def get_json():
-    # JSON 파일 경로 설정
-    file_dir = os.getenv("VOLUME_PATH")
-    json_file_path = file_dir + '/example.json'
-
-    try:
-        # 파일을 열고 JSON 데이터 읽기
-        with open(json_file_path, 'r', encoding='utf-8') as json_file:
-            data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
-
-        # JSON 데이터를 응답으로 반환
-        return jsonify(data)
-
-    except FileNotFoundError:
-        # 파일을 찾을 수 없는 경우 오류 메시지 반환
-        return jsonify({"error": "File not found"}), 404
-
-    except json.JSONDecodeError:
-        # 파일이 잘못된 JSON 형식일 경우 오류 메시지 반환
-        return jsonify({"error": "Invalid JSON format"}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
