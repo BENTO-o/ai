@@ -41,7 +41,6 @@ async def call_openai_api(api_key, chunk):
                 {"role": "user", "content": prompt},
             ],
         }
-
         async with session.post(url, headers=headers, json=payload) as response:
             response_data = await response.json()
             content = response_data["choices"][0]["message"]["content"]
@@ -80,6 +79,7 @@ async def improve_transcription(input_file, output_file):
     for i, corrected in enumerate(corrected_scripts):
         script[i]["text"] = corrected["text"]
 
+
     # Save the modified data to a new JSON file
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
@@ -91,3 +91,4 @@ async def improve_transcription(input_file, output_file):
 # Example usage
 if __name__ == "__main__":
     asyncio.run(improve_transcription("Data/STT_output/example.json", "Data/improve_output/corrected_example.json"))
+
