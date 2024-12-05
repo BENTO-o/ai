@@ -6,12 +6,12 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - bento-network
+      - dev-network
     env_file:
       - .env
     volumes:
       - ./data:/app/data  # 컨테이너의 /app/data를 호스트의 ./data에 마운트
 
 networks:
-  bento-network:
+  dev-network:
     external: true  # 외부 네트워크 사용
