@@ -194,6 +194,12 @@ def generate_summary():
         if not input_data:
             return jsonify({"error": "data is required"}), 400
 
+        if 'content' in input_data:
+            input_data['content'] = json.loads(input_data['content'])
+
+        if 'script' not in input_data['content']:
+            return jsonify({"error": "Missing 'script' field in 'content'"}), 400
+
         # 요약 생성 함수 호출
         output_data = ai_summary.summarize_script(input_data, summary_output_file)
         return jsonify(output_data)
