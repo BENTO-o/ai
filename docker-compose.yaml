@@ -1,15 +1,17 @@
-version: '3.8'
 services:
   ai-server:
+    container_name: dev-ai
     build:
       context: ./ai       # 빌드 컨텍스트를 ai 디렉토리로 지정
     ports:
       - "5000:5000"
     networks:
-      - bento-network
+      - dev-network
     env_file:
       - .env
+    volumes:
+      - ./data:/app/data  # 컨테이너의 /app/data를 호스트의 ./data에 마운트
 
 networks:
-  bento-network:
+  dev-network:
     external: true  # 외부 네트워크 사용

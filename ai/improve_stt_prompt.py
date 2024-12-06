@@ -1,16 +1,13 @@
 import os
 import json
-from openai import OpenAI
+import asyncio
+import aiohttp
 from dotenv import load_dotenv
 
-# OpenAI API 키 로드
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-# 파일 경로 설정
-input_file = "Data/STT_output/example.json"
-output_file = "Data/improve_output/corrected_example.json"
-
+def load_client():
+    # Load the OpenAI API key from the environment
+    load_dotenv()
+    return os.getenv("OPENAI_API_KEY")
 
 # 프롬프트 생성 함수
 def create_stt_improve_prompt(script):
@@ -27,53 +24,71 @@ def create_stt_improve_prompt(script):
         f"\n\n{json.dumps(script, ensure_ascii=False)}"
     )
 
+async def call_openai_api(api_key, chunk):
+    """Send a chunk of text to OpenAI API and return the corrected chunk."""
+    async with aiohttp.ClientSession() as session:
+        texts = [{"text": item["text"]} for item in chunk]
+        prompt = create_stt_improve_prompt(texts)
+        url = "https://api.openai.com/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": "gpt-4o-mini",
+            "messages": [
+                {"role": "system", "content": "You are a helpful assistant skilled in text correction."},
+                {"role": "user", "content": prompt},
+            ],
+        }
+        async with session.post(url, headers=headers, json=payload) as response:
+            response_data = await response.json()
+            content = response_data["choices"][0]["message"]["content"]
 
-# JSON 파일 로드
-with open(input_file, "r", encoding="utf-8") as f:
-    data = json.load(f)
+            # Remove markdown formatting if present
+            if content.startswith("```json"):
+                content = content.strip("```json").strip("```").strip()
 
-# 스크립트 데이터 추출
-script = data["content"]["script"]
+            return json.loads(content)
 
-# 스크립트 분할
-chunk_size = 20
-chunks = [script[i:i + chunk_size] for i in range(0, len(script), chunk_size)]
+async def improve_transcription(input_file, output_file):
+    # Load OpenAI API key
+    api_key = load_client()
 
-# 교정된 텍스트를 저장할 리스트
-corrected_scripts = []
+    # Load original JSON file
+    with open(input_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-for chunk in chunks:
-    # 텍스트만 추출
-    texts = [{"text": item["text"]} for item in chunk]
+    # Extract script data
+    script = data["content"]["script"]
 
-    # OpenAI API 호출
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant skilled in text correction."},
-            {"role": "user", "content": create_stt_improve_prompt(texts)}
-        ]
-    )
+    # Split the script into chunks
+    chunk_size = 20
+    chunks = [script[i:i + chunk_size] for i in range(0, len(script), chunk_size)]
 
-    # 응답 본문 확인
-    content = response.choices[0].message.content
-    print("Raw OpenAI Response Content:", content)
+    # Asynchronous API calls
+    tasks = [call_openai_api(api_key, chunk) for chunk in chunks]
+    results = await asyncio.gather(*tasks)
 
-    # 불필요한 백틱(```json ... ```) 제거
-    if content.startswith("```json"):
-        content = content.strip("```json").strip("```").strip()
+    # Combine results
+    corrected_scripts = []
+    for corrected_chunk in results:
+        corrected_scripts.extend(corrected_chunk)
 
-    # JSON 변환 시도
-    corrected_chunk = json.loads(content)
-    corrected_scripts.extend(corrected_chunk)
+    # Replace the script content in the original JSON with corrected content
+    for i, corrected in enumerate(corrected_scripts):
+        script[i]["text"] = corrected["text"]
 
-# 원본 JSON의 script 내용 교체
-for i, corrected in enumerate(corrected_scripts):
-    script[i]["text"] = corrected["text"]
 
-# 수정된 데이터를 새로운 JSON 파일로 저장
-with open(output_file, "w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=4)
+    # Save the modified data to a new JSON file
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
-print(f"Updated JSON saved to {output_file}")
+    print(f"Updated JSON saved to {output_file}")
+
+    return data
+
+# Example usage
+if __name__ == "__main__":
+    asyncio.run(improve_transcription("Data/STT_output/example.json", "Data/improve_output/corrected_example.json"))
 
