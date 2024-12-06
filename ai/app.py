@@ -1,15 +1,19 @@
 from flask import Flask, request, jsonify
+from openai import OpenAI
 import requests
 import json
 import os
 from dotenv import load_dotenv
 from datetime import datetime
 
+import improve_stt_prompt
+import ai_summary
+
 # 환경 변수 로드
 load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__)
-
 
 class NoteManager:
     def __init__(self):
@@ -27,23 +31,27 @@ class ClovaSpeechClient:
         if not self.secret:
             raise ValueError("CLOVA_SECRET_KEY is not set in environment variables.")
 
-    def req_upload(self, file_path, completion):
+    def req_upload(self, file, language, completion):
         headers = {
             'Accept': 'application/json;UTF-8',
             'X-CLOVASPEECH-API-KEY': self.secret
         }
 
         request_body = {
-            'language': 'enko',
+            'language': language,
             'completion': completion
         }
 
-        with open(file_path, 'rb') as file:
-            files = {
-                'media': file,
-                'params': (None, json.dumps(request_body, ensure_ascii=False).encode('UTF-8'), 'application/json')
-            }
-            response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
+        files = {
+            'media': file,
+            'params': (None, json.dumps(request_body, ensure_ascii=False).encode('UTF-8'), 'application/json')
+        }
+
+        print("Waiting response from Clova...")
+
+        response = requests.post(headers=headers, url=self.invoke_url + '/recognizer/upload', files=files)
+
+        print("Get response from Clova")
 
         return response
 
@@ -99,18 +107,56 @@ def format_time(milliseconds):
     minutes, seconds = divmod(remainder, 60)
     return f"{hours:02}:{minutes:02}:{seconds:02}"
 
+def save_file(input_content, output_file):
+    with open(output_file, mode='w', encoding='utf-8') as json_file:
+        json.dump(input_content, json_file, ensure_ascii=False, indent=4)
 
-@app.route('/process-audio', methods=['POST'])
-def process_audio():
-    data = request.get_json()
-    file_path = data.get('file_path')
-    completion = data.get('completion', 'sync')
+    print(f"File saved at: {output_file}")
 
-    if not file_path:
-        return jsonify({'error': 'file_path is required'}), 400
+    return output_file
 
+
+
+# get STT results
+@app.route('/scripts', methods=['POST'])
+async def process_audio():
+    # JSON 파일 경로 설정
+    file_dir = os.getenv("VOLUME_PATH")
+    stt_output_file = file_dir + '/STT_output/example.json'
+    improve_output_file = file_dir + '/improve_output/corrected_example.json'
+
+    # get files
+    file = request.files['file']
+    language = request.form['language']
+    topics = request.form['topics']
+
+    if not file:
+        return jsonify({'error': 'file is wrong'}), 400
+
+    print("Get files from client")
+
+    # # (for test) return dummy data
+    # dummy_file = file_dir + '/STT_output/example.json'
+    #
+    # # 파일을 열고 JSON 데이터 읽기
+    # with open(dummy_file, 'r', encoding='utf-8') as json_file:
+    #     data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
+    #
+    # # STT 변환 결과 저장
+    # save_file(data, file_dir + '/STT_output/test_1.json')
+    #
+    # print("Prompting start...")
+    # # 스크립트 프롬프팅 결과를 저장
+    # prompt_data = improve_stt_prompt.improve_transcription(stt_output_file, improve_output_file)
+    #
+    # # JSON 데이터를 응답으로 반환
+    # return jsonify(prompt_data)
+
+    # send file to Clova and get response
     client = ClovaSpeechClient()
-    response = client.req_upload(file_path, completion)
+    response = client.req_upload(file, language, completion='sync')
+
+    print(response)
 
     if response.status_code != 200:
         return jsonify({'error': 'Failed to get response from Clova API'}), 500
@@ -124,29 +170,42 @@ def process_audio():
     total_duration_ms = segments[-1]['end']
     custom_json = change_to_custom_json(segments, total_duration_ms)
 
-    return jsonify(custom_json)
+    save_file(custom_json, stt_output_file)
 
-# 엔드포인트 정의: /get-json
-@app.route('/get-json', methods=['GET'])
-def get_json():
+    print("Prompting start...")
+    # 스크립트 프롬프팅 결과를 저장
+    prompt_data = await improve_stt_prompt.improve_transcription(stt_output_file, improve_output_file)
+
+    print(prompt_data)
+
+    # JSON 데이터를 응답으로 반환
+    return jsonify(prompt_data)
+
+# get ai-summary from script
+@app.route('/summarys', methods=['POST'])
+def generate_summary():
     # JSON 파일 경로 설정
-    json_file_path = './Data/STT_output/example.json'
+    file_dir = os.getenv("VOLUME_PATH")
+    summary_output_file = file_dir + '/ai_summary_output/summary_example.json'
 
     try:
-        # 파일을 열고 JSON 데이터 읽기
-        with open(json_file_path, 'r', encoding='utf-8') as json_file:
-            data = json.load(json_file)  # 파일에서 JSON 데이터를 로드
+        input_data = request.get_json()
 
-        # JSON 데이터를 응답으로 반환
-        return jsonify(data)
+        if not input_data:
+            return jsonify({"error": "data is required"}), 400
 
-    except FileNotFoundError:
-        # 파일을 찾을 수 없는 경우 오류 메시지 반환
-        return jsonify({"error": "File not found"}), 404
+        if 'content' in input_data:
+            input_data['content'] = json.loads(input_data['content'])
 
-    except json.JSONDecodeError:
-        # 파일이 잘못된 JSON 형식일 경우 오류 메시지 반환
-        return jsonify({"error": "Invalid JSON format"}), 400
+        if 'script' not in input_data['content']:
+            return jsonify({"error": "Missing 'script' field in 'content'"}), 400
+
+        # 요약 생성 함수 호출
+        output_data = ai_summary.summarize_script(input_data, summary_output_file)
+        return jsonify(output_data)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

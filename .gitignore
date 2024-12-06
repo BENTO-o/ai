@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # Environments
 .env
 
+.DS_Store
