@@ -1,10 +1,11 @@
+name: dev
 services:
   ai-server:
     container_name: dev-ai
     build:
       context: ./ai       # 빌드 컨텍스트를 ai 디렉토리로 지정
     ports:
-      - "5000:5000"
+      - "5001:5000"
     networks:
       - dev-network
     env_file:
